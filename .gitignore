@@ -51,3 +51,9 @@ GNU\ ARM*
 
 # Backup files
 *.bak
+
+# settings file
+.settings
+
+# Project import result
+imported_project_report.html
