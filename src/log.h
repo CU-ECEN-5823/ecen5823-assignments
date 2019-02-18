@@ -7,7 +7,6 @@
 
 #ifndef SRC_LOG_H_
 #define SRC_LOG_H_
-#include "stdio.h"
 #include <inttypes.h>
 
 /**
@@ -32,6 +31,8 @@
  *       before the #include "log.h" reference.
  *   * To turn on for all files #define INCLUDE_LOG_DEBUG 1 in the project configuration.
  */
+
+
 #ifndef LOG_ERROR
 #define LOG_ERROR(message,...) \
 	LOG_DO(message,"Error", ##__VA_ARGS__)
@@ -61,7 +62,7 @@
 
 #if INCLUDE_LOGGING
 #define LOG_DO(message,level, ...) \
-	printf( "%5"PRIu32":%s:%s: " message "\n", loggerGetTimestamp(), level, __func__, ##__VA_ARGS__ )
+	logInterruptSafe( "%5"PRIu32":%s:%s: " message "\n", loggerGetTimestamp(), level, __func__, ##__VA_ARGS__ )
 void logInit();
 uint32_t loggerGetTimestamp();
 void logFlush();
@@ -74,5 +75,6 @@ static inline void logInit() {}
 static inline void logFlush() {}
 #endif
 
+extern void logInterruptSafe(const char *format,...);
 
 #endif /* SRC_LOG_H_ */

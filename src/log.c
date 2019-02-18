@@ -8,6 +8,9 @@
 #include "retargetserial.h"
 #include "log.h"
 #include <stdbool.h>
+#include "em_core.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 #if INCLUDE_LOGGING
 /**
@@ -35,6 +38,22 @@ void logInit(void)
 	LOG_INFO("Initialized Logging");
 }
 
+/**
+ * Log the arguments in @param format and va arg list for printf style syntax in a way
+ * which is interrupt safe
+ */
+void logInterruptSafe(const char *format,...)
+{
+	CORE_DECLARE_IRQ_STATE;
+	/* Critical section to allow sleep blocks in ISRs. */
+	CORE_ENTER_CRITICAL();
+
+	va_list argList;
+	va_start(argList, format);
+	vprintf(format, argList);
+	va_end(argList);
+	CORE_EXIT_CRITICAL();
+}
 /**
  * Block for chars to be flushed out of the serial port.  Important to do this before entering SLEEP() or you may see garbage chars output.
  */
