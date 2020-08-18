@@ -1,6 +1,6 @@
 # ECEN 5823 Assignment Skeleton
 
-This project contains skeleton code used for coursework in University of Colorado [ECEN 5823 IoT Embedded Firmware](https://sites.google.com/colorado.edu/ecen5823/home).
+This project contains skeleton code used for coursework in University of Colorado [ECEN 5823 IoT Embedded Firmware](https://sites.google.com/colorado.edu/ecen5823-s2020/home).
 
 Below is an overview of the sequence used to generate this repository.  For handling SDK upgrades, please see the instructions in [the wiki page](https://github.com/CU-ECEN-5823/ecen5823-assignments/wiki/Silicon-Labs-SDK-Upgrades).
 * The project was generated starting with the new project Wizard built into [Simplicity Studio 4](https://www.silabs.com/products/development-tools/software/simplicity-studio).  
